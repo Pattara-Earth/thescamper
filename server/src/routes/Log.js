@@ -32,7 +32,10 @@ router.get('/api/api-log/:api_log_id', async (req, res) => {
 router.post('/api/api-log', async (req, res) => {
     const connect = req.db;
     try {
-        const results = await connect.query('INSERT INTO `api_log` SET ?', req.body)
+        const results = await connect.execute(
+            'INSERT INTO `api_log` (log_time, method, url_endpoint, log_status, response, user_id) VALUES (?, ?, ?, ?, ?, ?)', 
+            [req.body.log_time, req.body.method, req.body.url_endpoint, req.body.log_status, req.body.response, req.body.user_id]
+        )
         res.json({status: 'ok', data: results[0]})
     } catch (err) {
         res.json({status: 'error', message: err})
@@ -84,7 +87,11 @@ router.get('/api/prediction-log/:pred_log_id', async (req, res) => {
 router.post('/api/prediction-log', async (req, res) => {
     const connect = req.db;
     try {
-        const results = await connect.query('INSERT INTO `prediction_log` SET ?', req.body)
+        const results = await connect.execute(
+            'INSERT INTO `prediction_log` (log_time, inference_time, logit, log_status, response, user_id, admit_id) VALUES (?, ?, ?, ?, ?, ?, ?)', 
+            [req.body.log_time, req.body.inference_time, req.body.logit, req.body.log_status, req.body.response, req.body.user_id, req.body.admit_id]
+        )
+
         res.json({status: 'ok', data: results[0]})
     } catch (err) {
         res.json({status: 'error', message: err})

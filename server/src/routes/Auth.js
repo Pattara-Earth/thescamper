@@ -32,16 +32,19 @@ router.get('/api/users/:user_id', async (req, res) => {
     }
 })
 
-// Handling POST request to create a new record in 'user' table
-router.post('/api/users', async (req, res) => {
-    const connect = req.db;
-    try {
-        const results = await connect.query('INSERT INTO `users` SET ?', req.body)
-        res.json({status: 'ok', data: results[0]})
-    } catch (err) {
-        res.json({status: 'error', message: err})
-    }
-})
+// // Handling POST request to create a new record in 'user' table
+// router.post('/api/users', async (req, res) => {
+//     const connect = req.db;
+//     try {
+//         const results = await connect.execute(
+//             'INSERT INTO `users` (email, pass, user_role) VALUES (?, ?, ?)', 
+//             [req.body.email, pass, req.body.role]
+//         )
+//         res.json({status: 'ok', data: results[0]})
+//     } catch (err) {
+//         res.json({status: 'error', message: err})
+//     }
+// })
 
 // Handling DELETE request to delete a record by user_id in 'user' table
 router.delete('/api/users/:user_id', async (req, res) => {
@@ -69,9 +72,9 @@ router.post('/api/register', async (req, res) => {
             });
         });
         
-        const result = await connect.query(
-            'INSERT INTO `users` (user_id, email, pass, user_role) VALUES (?, ?, ?, ?)', 
-            [req.body.user_id, req.body.email, hashedPassword, req.body.role]
+        const result = await connect.execute(
+            'INSERT INTO `users` (email, pass, user_role) VALUES (?, ?, ?)', 
+            [req.body.email, hashedPassword, req.body.user_role]
         );
         
         res.json({status: 'ok', data: result[0]});

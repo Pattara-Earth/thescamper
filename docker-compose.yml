@@ -1,6 +1,54 @@
+# version: "3.9"
+# services:
+#   db:
+#     container_name: db
+#     build: ./mysql
+#     restart: always
+#     ports:
+#       - 3306:3306
+#     networks:
+#       - app_network
+  
+#   dbms:
+#     container_name: dbms
+#     image: phpmyadmin:5.2.1
+#     restart: always
+#     environment:
+#       PMA_HOST: db
+#     ports:
+#       - 8080:80
+#     networks:
+#       - app_network
+
+#   server:
+#     # container_name: server
+#     build: ./server
+#     restart: always
+#     # ports:
+#     #   - 3000:3000
+#     networks:
+#       - app_network
+#     depends_on:
+#       - db
+  
+#   nginx: 
+#     image: nginx:latest
+#     volumes:
+#       - ./conf.d:/etc/nginx/conf.d
+#     # command: [cat , 'etc/nginx/conf.d/nginx.conf']
+#     depends_on:
+#       - server
+#     ports:
+#       - 3000:3000
+
+# networks:
+#   app_network:
+#     driver: bridge
+
+
 version: "3.9"
 services:
-  inpatient_db:
+  db:
     container_name: db
     build: ./mysql
     restart: always
@@ -9,18 +57,18 @@ services:
     networks:
       - app_network
   
-  inpatient_dbms:
+  dbms:
     container_name: dbms
     image: phpmyadmin:5.2.1
     restart: always
     environment:
-      PMA_HOST: inpatient_db
+      PMA_HOST: db
     ports:
       - 8080:80
     networks:
       - app_network
 
-  inpatient_server:
+  server:
     container_name: server
     build: ./server
     restart: always
@@ -29,7 +77,7 @@ services:
     networks:
       - app_network
     depends_on:
-      - inpatient_db
+      - db
 
 networks:
   app_network:

@@ -1,6 +1,6 @@
 # MySQL-Front Dump 2.5
 
-# Host: inpatient_db Database: inpatient
+# Host: db Database: inpatient
 # -------------------------------------------------------
 # Server version: 4.0.11-gamma-nt
 
@@ -16,7 +16,7 @@ SET character_set_connection=utf8;
 #
 
 CREATE TABLE providers (
-    provider_id VARCHAR(4) NOT NULL PRIMARY KEY,
+    provider_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     fname TEXT DEFAULT NULL,
     lname TEXT DEFAULT NULL,
     provider_role VARCHAR(30) DEFAULT NULL
@@ -26,17 +26,17 @@ CREATE TABLE providers (
 # Dumping data for table 'providers'
 #
 
-INSERT INTO providers VALUES('0001', 'ศุภณัฐ', 'วงศานุพัทธ์', 'แพทย์');
-INSERT INTO providers VALUES('0002', 'พฤทธิ์', 'เสาวพฤทธิ์', 'แพทย์');
-INSERT INTO providers VALUES('0003', 'ศศิกานต์', 'เลิศพิพัฒน์กิจ', 'พยาบาล');
-INSERT INTO providers VALUES('0004', 'พิมพ์มาดา', 'จิระวัธน์', 'พยาบาล');
+INSERT INTO providers (fname, lname, provider_role) VALUES('ศุภณัฐ', 'วงศานุพัทธ์', 'แพทย์');
+INSERT INTO providers (fname, lname, provider_role) VALUES('พฤทธิ์', 'เสาวพฤทธิ์', 'แพทย์');
+INSERT INTO providers (fname, lname, provider_role) VALUES('ศศิกานต์', 'เลิศพิพัฒน์กิจ', 'พยาบาล');
+INSERT INTO providers (fname, lname, provider_role) VALUES('พิมพ์มาดา', 'จิระวัธน์', 'พยาบาล');
 
 #
 # Table structure for table 'users'
 #
 
 CREATE TABLE users (
-    user_id VARCHAR(4) NOT NULL PRIMARY KEY,
+    user_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     email VARCHAR(100) DEFAULT NULL,
     pass VARCHAR(100) DEFAULT NULL,
     user_role VARCHAR(30) DEFAULT NULL
@@ -46,17 +46,17 @@ CREATE TABLE users (
 # Dumping data for table 'users'
 #
 
-INSERT INTO users VALUES('0001', 'suphanat.wong@gmail.com', '$2b$10$wEZDSW3BvJpNIijwP8kKvehiqVcNj5Rg71QqnStsk7udITiRNEIOq', 'แพทย์');
-INSERT INTO users VALUES('0002', 'upsaowaprut@gmail.com', '$2b$10$wEZDSW3BvJpNIijwP8kKvehiqVcNj5Rg71QqnStsk7udITiRNEIOq', 'แพทย์');
-INSERT INTO users VALUES('0003', 'sasapipat@gmail.com', '$2b$10$wEZDSW3BvJpNIijwP8kKvehiqVcNj5Rg71QqnStsk7udITiRNEIOq', 'พยาบาล');
-INSERT INTO users VALUES('0004', 'pimmada1415@gmail.com', '$2b$10$wEZDSW3BvJpNIijwP8kKvehiqVcNj5Rg71QqnStsk7udITiRNEIOq', 'พยาบาล');
+INSERT INTO users (email, pass, user_role) VALUES('suphanat.wong@gmail.com', '$2b$10$wEZDSW3BvJpNIijwP8kKvehiqVcNj5Rg71QqnStsk7udITiRNEIOq', 'แพทย์');
+INSERT INTO users (email, pass, user_role) VALUES('upsaowaprut@gmail.com', '$2b$10$wEZDSW3BvJpNIijwP8kKvehiqVcNj5Rg71QqnStsk7udITiRNEIOq', 'แพทย์');
+INSERT INTO users (email, pass, user_role) VALUES('sasapipat@gmail.com', '$2b$10$wEZDSW3BvJpNIijwP8kKvehiqVcNj5Rg71QqnStsk7udITiRNEIOq', 'พยาบาล');
+INSERT INTO users (email, pass, user_role) VALUES('pimmada1415@gmail.com', '$2b$10$wEZDSW3BvJpNIijwP8kKvehiqVcNj5Rg71QqnStsk7udITiRNEIOq', 'พยาบาล');
 
 #
 # Table structure for table 'patient'
 #
 
 CREATE TABLE patient (
-    patient_id VARCHAR(4) NOT NULL PRIMARY KEY,
+    patient_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     fname TEXT DEFAULT NULL,
     lname TEXT DEFAULT NULL,
     dob DATE DEFAULT NULL,
@@ -68,11 +68,10 @@ CREATE TABLE patient (
 # Dumping data for table 'patient'
 #
 
-INSERT INTO patient VALUES('0001', 'เร็น', 'โยเนฮะนะ', '2001-09-24', 'ชาย', 'Amoxycillin (rash)'); 
-INSERT INTO patient VALUES('0002', 'เร็น', 'โยเนฮะนะ', '2001-09-24', 'หญิง', '-'); 
-INSERT INTO patient VALUES('0003', 'เร็น', 'โยเนฮะนะ', '2001-09-24', 'ชาย', 'Paracetamol (rash)'); 
-INSERT INTO patient VALUES('0004', 'เร็น', 'โยเนฮะนะ', '2001-09-24', 'หญิง', 'Dicloxacillin (dyspnea)'); 
-
+INSERT INTO patient (fname, lname, dob, sex, drug_allergy) VALUES('เร็น', 'โยเนฮะนะ', '2001-09-24', 'ชาย', 'Amoxycillin (rash)'); 
+INSERT INTO patient (fname, lname, dob, sex, drug_allergy) VALUES('ธีรดนย์', 'แก้วนก', '2000-08-15', 'หญิง', '-'); 
+INSERT INTO patient (fname, lname, dob, sex, drug_allergy) VALUES('อานนท์', 'แซ่อึ่ง', '1996-07-26', 'ชาย', 'Paracetamol (rash)'); 
+INSERT INTO patient (fname, lname, dob, sex, drug_allergy) VALUES('สิรวิชญ์', 'ขันธรักษ์', '1994-05-12', 'หญิง', 'Dicloxacillin (dyspnea)'); 
 
 #
 # Table structure for table 'icd10'
@@ -98,13 +97,13 @@ INSERT INTO icd10 VALUES('J18', 'Pneumonia');
 #
 
 CREATE TABLE admission (
-    admit_id VARCHAR(4) NOT NULL PRIMARY KEY,
+    admit_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     admit_date DATETIME DEFAULT NULL,
     room_num VARCHAR(5) DEFAULT NULL,
     admit_status VARCHAR(50) DEFAULT NULL,
     diagnosis TEXT DEFAULT NULL,
     icd10_id VARCHAR(10),
-    patient_id VARCHAR(4),
+    patient_id INT,
     FOREIGN KEY (icd10_id) REFERENCES icd10(icd10_id),
     FOREIGN KEY (patient_id) REFERENCES patient(patient_id)
 );
@@ -113,23 +112,23 @@ CREATE TABLE admission (
 # Dumping data for table 'admission'
 #
 
-INSERT INTO admission VALUES('0001', '2023-10-28 19:30:35', 'A001', 'Admit','Covid-19 with Stroke on Tracheostomy','I63','0001'); 
-INSERT INTO admission VALUES('0002', '2023-10-28 19:30:35', 'A001', 'Admit','Dengue Fever with Stroke ','I63','0003'); 
-INSERT INTO admission VALUES('0003', '2023-10-28 19:30:35', 'A001', 'Discharge','Pneumonia','J18','0002'); 
-INSERT INTO admission VALUES('0004', '2023-10-28 19:30:35', 'A001', 'Admit','Cancer of Esophagus on Tracheostomy','C15','0004'); 
+INSERT INTO admission (admit_date, room_num, admit_status, diagnosis, icd10_id, patient_id) VALUES('2024-04-01 19:10:34', 'A001', 'Admit','Covid-19 with Stroke on Tracheostomy','I63', 1); 
+INSERT INTO admission (admit_date, room_num, admit_status, diagnosis, icd10_id, patient_id) VALUES('2024-04-02 20:30:20', 'A002', 'Admit','Dengue Fever with Stroke ','I63', 2); 
+INSERT INTO admission (admit_date, room_num, admit_status, diagnosis, icd10_id, patient_id) VALUES('2024-04-03 21:21:35', 'A004', 'Discharge','Pneumonia','J18', 3); 
+INSERT INTO admission (admit_date, room_num, admit_status, diagnosis, icd10_id, patient_id) VALUES('2024-04-04 22:37:45', 'A003', 'Admit','Cancer of Esophagus on Tracheostomy','C15', 4); 
 
 #
 # Table structure for table 'services'
 #
 
 CREATE TABLE services (
-    service_id VARCHAR(4) NOT NULL PRIMARY KEY,
+    service_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     service_time DATETIME DEFAULT NULL,
     service_type VARCHAR(50) DEFAULT NULL,
     servive_name VARCHAR(255) DEFAULT NULL,
     detail TEXT DEFAULT NULL,
     service_status VARCHAR(50),
-    provider_id VARCHAR(4), 
+    provider_id INT, 
     FOREIGN KEY (provider_id) REFERENCES providers(provider_id)
 );
 
@@ -137,45 +136,44 @@ CREATE TABLE services (
 # Dumping data for table 'services'
 #
 
-INSERT INTO services VALUES('0001', '2023-10-28 19:30:35', 'Medical','Call for Help', '','On Process','0003'); 
-INSERT INTO services VALUES('0002', '2023-10-28 19:30:35', 'Medical','Request for Patient Control Analgesia', 'Morphine (4mg)','Done','0001'); 
-INSERT INTO services VALUES('0003', '2023-10-28 19:30:35', 'Medical', 'Call for Help', 'Chest Pain', 'Done', '0004'); 
-INSERT INTO services VALUES('0004', '2023-10-28 19:30:35', 'Medical', 'Request for Patient Control Analgesia', 'Tramol (50mg)', 'Done', '0003'); 
+INSERT INTO services (service_time, service_type, servive_name, detail, service_status, provider_id) VALUES('2024-04-01 19:10:34', 'Medical', 'Call for Help', '','On Process', 3); 
+INSERT INTO services (service_time, service_type, servive_name, detail, service_status, provider_id) VALUES('2024-04-02 20:30:20', 'Medical', 'Request for Patient Control Analgesia', 'Morphine (4mg)', 'Done', 1); 
+INSERT INTO services (service_time, service_type, servive_name, detail, service_status, provider_id) VALUES('2024-04-03 21:21:35', 'Medical', 'Call for Help', 'Chest Pain', 'Done', 4); 
+INSERT INTO services (service_time, service_type, servive_name, detail, service_status, provider_id) VALUES('2024-04-04 22:37:45', 'Medical', 'Request for Patient Control Analgesia', 'Tramol (50mg)', 'Done', 3); 
 
 #
 # Table structure for table 'actions'
 #
 CREATE TABLE actions (
-    action_id VARCHAR(4) NOT NULL PRIMARY KEY,
+    action_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     action_time DATETIME DEFAULT NULL,
     action_type VARCHAR(50) DEFAULT NULL,
     action_name VARCHAR(255) DEFAULT NULL,
     action_status VARCHAR(50),
-    admit_id VARCHAR(4),
+    admit_id INT,
     FOREIGN KEY (admit_id) REFERENCES admission(admit_id)
-
 );
 
 #
 # Dumping data for table 'actions'
 #
 
-INSERT INTO actions VALUES('0001', '2023-10-28 19:30:35', 'Environment', 'Turn off light', 'Done', '0001'); 
-INSERT INTO actions VALUES('0002', '2023-10-28 19:30:35', 'Environment', 'Turn on light', 'On Process', '0003'); 
+INSERT INTO actions (action_time, action_type, action_name, action_status, admit_id) VALUES('2024-04-01 19:10:34', 'Environment', 'Turn off light', 'Done', 1); 
+INSERT INTO actions (action_time, action_type, action_name, action_status, admit_id) VALUES('2024-04-02 20:30:20', 'Environment', 'Turn on light', 'On Process', 3); 
 
 #
 # Table structure for table 'api_log'
 #
 
 CREATE TABLE api_log (
-    api_log_id VARCHAR(4) NOT NULL PRIMARY KEY,
+    api_log_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     log_time DATETIME DEFAULT NULL, 
     method VARCHAR(10) DEFAULT NULL,
     url_endpoint VARCHAR(255) DEFAULT NULL,
     log_status VARCHAR(7) DEFAULT NULL,
     response VARCHAR(255) DEFAULT NULL,
-    user_id VARCHAR(4),
-    FOREIGN KEY (user_id) REFERENCES user(user_id)
+    user_id INT,
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 
 #
@@ -183,15 +181,15 @@ CREATE TABLE api_log (
 #
 
 CREATE TABLE prediction_log (
-    pred_log_id VARCHAR(4) NOT NULL PRIMARY KEY,
+    pred_log_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     log_time DATETIME DEFAULT NULL,
     inference_time FLOAT DEFAULT NULL,
     logit VARCHAR(50) DEFAULT NULL,
     log_status VARCHAR(7) DEFAULT NULL,
     response VARCHAR(255) DEFAULT NULL,
-    user_id VARCHAR(4),
-    admit_id VARCHAR(4),
-    FOREIGN KEY (user_id) REFERENCES user(user_id),
+    user_id INT,
+    admit_id INT,
+    FOREIGN KEY (user_id) REFERENCES users(user_id),
     FOREIGN KEY (admit_id) REFERENCES admission(admit_id)
 );
 
@@ -200,9 +198,9 @@ CREATE TABLE prediction_log (
 #
 
 CREATE TABLE admit_service (
-    admit_service_id VARCHAR(4) NOT NULL PRIMARY KEY,
-    admit_id VARCHAR(4), 
-    service_id VARCHAR(4),
+    admit_service_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    admit_id INT, 
+    service_id INT,
     FOREIGN KEY (admit_id) REFERENCES admission(admit_id),
     FOREIGN KEY (service_id) REFERENCES services(service_id)
 );

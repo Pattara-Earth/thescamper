@@ -1,10 +1,12 @@
 const express = require('express')
 var bodyParser = require('body-parser')
 var mysql = require('mysql2/promise');
+const cors = require('cors')
 require('dotenv').config();
 var app = express()
 
 app.use(bodyParser.json())
+app.use(cors())
 
 const port = process.env.PORT || 3000; // Define port
 
