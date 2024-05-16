@@ -1,0 +1,6 @@
+-- #
+-- # Dumping data for table 'patient'
+-- #
+
+-- INSERT INTO patient VALUES();
+----------------------------------------------------------

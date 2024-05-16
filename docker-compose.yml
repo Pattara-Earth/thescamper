@@ -1,0 +1,37 @@
+version: "3.9"
+services:
+  inpatient_db:
+    container_name: db
+    build: ./mysql
+    restart: always
+    ports:
+      - 3306:3306
+    networks:
+      - app_network
+  
+  inpatient_dbms:
+    container_name: dbms
+    image: phpmyadmin:5.2.1
+    restart: always
+    environment:
+      PMA_HOST: inpatient_db
+    ports:
+      - 8080:80
+    networks:
+      - app_network
+
+  inpatient_server:
+    container_name: server
+    build: ./server
+    restart: always
+    ports:
+      - 3000:3000
+    networks:
+      - app_network
+    depends_on:
+      - inpatient_db
+
+networks:
+  app_network:
+    driver: bridge
+    
