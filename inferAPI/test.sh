@@ -1,0 +1,1 @@
+curl -X POST  -H "Content-Type: multipart/form-data" -H "Accept: application/json" -F "file=@00edaaa8-102d-4ee3-b531-0be67dcbd9e6.npy" http://0.0.0.0:8000/predict
